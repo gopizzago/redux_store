@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
+import { useSelector, useDispatch } from 'react-redux';
+import {inc, dec} from './reducers/counterReducer';
 
 function App() {
+  const countNumber = useSelector(state=>state.counter.value);
+  console.log(countNumber);
+  const dispatch = useDispatch();
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <span>{countNumber}</span>
+          <button className='app-btn' onClick={()=>dispatch(inc())}>+</button>
+          <button className='app-btn' onClick={()=>dispatch(dec())}>-</button>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Sometimes removing negative people of your life makes room for better people.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       </header>
+      
     </div>
   );
 }
